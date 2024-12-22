@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'grain': 'grain 8s steps(10) infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                        'glitch-2': 'glitch 2s linear infinite',
+                        'scanline': 'scanline 6s linear infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                    },
+                    keyframes: {
+                        grain: {
+                            '0%, 100%': { transform: 'translate(0, 0)' },
+                            '10%': { transform: 'translate(-5%, -5%)' },
+                            '20%': { transform: 'translate(-10%, 5%)' },
+                            '30%': { transform: 'translate(5%, -10%)' },
+                            '40%': { transform: 'translate(-5%, 15%)' },
+                            '50%': { transform: 'translate(-10%, 5%)' },
+                            '60%': { transform: 'translate(15%, 0)' },
+                            '70%': { transform: 'translate(0, 10%)' },
+                            '80%': { transform: 'translate(-15%, 0)' },
+                            '90%': { transform: 'translate(10%, 5%)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .username-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .username-rotate {
+            animation: rotate3d 8s linear infinite;
+        }
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        .glitch-effect {
+            position: relative;
+        }
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch-effect::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            animation: glitch 2s infinite linear alternate-reverse;
+        }
+        .glitch-effect::after {
+            left: -2px;
+            text-shadow: 2px 0 #00fff9;
+            animation: glitch 3s infinite linear alternate-reverse;
+        }
+        .scanline {
+            position: relative;
+            overflow: hidden;
+        }
+        .scanline::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.05) 50%, transparent);
+            animation: scanline 6s linear infinite;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center p-4 text-neutral-400">
+    <div class="fixed inset-0 opacity-[0.02]">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-indigo-900/20 animate-grain"></div>
+    </div>
+    <div class="fixed inset-0">
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-900 rounded-full mix-blend-multiply filter blur-xl opacity-[0.015] animate-grain"></div>
+        <div class="absolute -bottom-8 right-0 w-72 h-72 bg-indigo-900 rounded-full mix-blend-multiply filter blur-xl opacity-[0.015] animate-grain"></div>
+    </div>
+    <div class="max-w-md w-full relative z-10">
+        <div class="rounded-xl p-8 border border-neutral-900 bg-black/50 backdrop-blur-sm scanline">
+            <div class="text-center space-y-4">
+                <div class="relative inline-block group">
+                    <div class="absolute inset-0 bg-neutral-900/50 rounded-full blur-md -z-10"></div>
+                    <img src="xaxaqa.png" alt="Profile Picture"  class="w-24 h-24 rounded-full mx-auto grayscale hover:grayscale-0 transition-all duration-300 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-full transition-opacity duration-300"></div>
+                </div>
+                <div class="username-3d">
+                    <h1 class="text-2xl font-medium text-white username-rotate" data-text="@username">@xaxaqa</h1>
+                    <p class="text-sm text-neutral-600 mt-1 hover:text-neutral-400 transition-colors">offline</p>
+                </div>
+            </div>
+            <div class="mt-8 flex justify-center space-x-12 text-center">
+                <div class="group">
+                    <div class="text-xl font-medium text-white group-hover:text-cyan-400 transition-colors">1,337</div>
+                    <div class="text-xs text-neutral-600 group-hover:text-neutral-500">followers</div>
+                </div>
+                <div class="group">
+                    <div class="text-xl font-medium text-white group-hover:text-purple-400 transition-colors">42</div>
+                    <div class="text-xs text-neutral-600 group-hover:text-neutral-500">following</div>
+                </div>
+            </div>
+            <div class="mt-8 space-y-3">
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-neutral-900/50 transition-all group hover:scale-[1.02]">
+                    <span class="flex items-center gap-3">
+                        <i class="fab fa-discord text-lg group-hover:text-indigo-400 transition-colors"></i>
+                        <span class="text-sm group-hover:text-white transition-colors">xaxaqa</span>
+                    </span>
+                    <span class="text-xs text-neutral-700 group-hover:text-neutral-500 group-hover:translate-x-1 transition-all">→</span>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-neutral-900/50 transition-all group hover:scale-[1.02]">
+                    <span class="flex items-center gap-3">
+                        <i class="fab fa-twitter text-lg group-hover:text-blue-400 transition-colors"></i>
+                        <span class="text-sm group-hover:text-white transition-colors">@xaxaqa</span>
+                    </span>
+                    <span class="text-xs text-neutral-700 group-hover:text-neutral-500 group-hover:translate-x-1 transition-all">→</span>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg hover:bg-neutral-900/50 transition-all group hover:scale-[1.02]">
+                    <span class="flex items-center gap-3">
+                        <i class="fab fa-github text-lg group-hover:text-purple-400 transition-colors"></i>
+                        <span class="text-sm group-hover:text-white transition-colors">github.com/xaxaqa</span>
+                    </span>
+                    <span class="text-xs text-neutral-700 group-hover:text-neutral-500 group-hover:translate-x-1 transition-all">→</span>
+                </a>
+            </div>
+            <div class="mt-8 pt-6 border-t border-neutral-900 text-center">
+                <span class="text-xs text-neutral-800 hover:text-neutral-700 transition-colors">member since xaxaqa</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
